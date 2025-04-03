@@ -1,0 +1,6 @@
+@AuthManagment_WebAPI_80_HostAddress = http://localhost:5252
+
+GET {{AuthManagment_WebAPI_80_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
