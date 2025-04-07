@@ -15,14 +15,7 @@ namespace AuthManagment_WebAPI_80.Controllers
             _personaService = personaService;
         }
 
-        [HttpPost]
-        [Route("create")]
-        public async Task<ActionResult> Create([FromBody] PersonaDTO personaDTO)
-        {
-            var createPerson = await _personaService.Create(personaDTO);
-
-            return CreatedAtAction(nameof(Create), createPerson);
-        }
+       
         [HttpGet]
         [Route("get")]
         public async Task<ActionResult> GetAll()

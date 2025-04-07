@@ -13,23 +13,7 @@ namespace AuthManagment_WebAPI_80.Services
         {
             _context = context;
         }
-        public async Task<String> Create( PersonaDTO personaDTO)
-        {
-            //if (personaDTO == null) throw Error("Persona is null");
-            var persona = new PersonaModel()
-            {
-                Id = "111",
-                Name = personaDTO.Name,
-                Email = personaDTO.Email,
-                Password = personaDTO.Password,
-                Rol = "User",
-            };
 
-            _context.Personas.Add(persona);
-            await _context.SaveChangesAsync();
-            
-            return "Persona created";
-        }
         public async Task<List<PersonaDTO>> GetAll()
         {
             var listaDTO = new List<PersonaDTO>();
@@ -50,12 +34,13 @@ namespace AuthManagment_WebAPI_80.Services
 
         public async Task<PersonaDTO> GetById(string id)
         {
-            var personaDTO = new PersonaDTO();
             var personaDB = await _context.Personas.FindAsync(id);
+            var personaDTO = new PersonaDTO()
+            {
+                Name = personaDB.Name,
+                Email = personaDB.Email,
+            };
             //if (personaDB == null) return NotFound("Persona no found");
-
-            personaDTO.Name = personaDB.Name;
-            personaDTO.Email = personaDB.Email;
 
             return personaDTO;
         }
