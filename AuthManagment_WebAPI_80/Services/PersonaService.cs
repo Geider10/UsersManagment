@@ -22,7 +22,7 @@ namespace AuthManagment_WebAPI_80.Services
                 Name = personaDTO.Name,
                 Email = personaDTO.Email,
                 Password = personaDTO.Password,
-                Rol = Role.User,
+                Rol = "User",
             };
 
             _context.Personas.Add(persona);
