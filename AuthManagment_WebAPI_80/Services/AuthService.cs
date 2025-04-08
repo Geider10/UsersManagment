@@ -47,7 +47,6 @@ namespace AuthManagment_WebAPI_80.Services
             if (!matchPassword) throw new Exception("Password incoorrect");
 
             var token = _util.generateJWT(existingPersona);
-            Console.WriteLine(token);
 
             return token;
         }

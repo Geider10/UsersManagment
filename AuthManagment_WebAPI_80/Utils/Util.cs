@@ -9,6 +9,11 @@ namespace AuthManagment_WebAPI_80.Utils
 {
     public class Util
     {
+        private readonly IConfiguration _configuration;
+        public Util(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public string hashText(string text)
         {
             var hash = BCrypt.Net.BCrypt.HashPassword(text);
@@ -28,7 +33,8 @@ namespace AuthManagment_WebAPI_80.Utils
             {
                 new Claim("id", persona.Id),
             };
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("laClaveMasLargaDelMundo2025-Asp.Net-Web.API-8.0"));
+            var secret_Key = _configuration.GetRequiredSection("SECRET_KEY").Value;
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret_Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             //create token
             var token = new JwtSecurityToken(
