@@ -29,7 +29,7 @@ namespace AuthManagment_WebAPI_80.Services
                 Name = authDTO.Name,
                 Email = authDTO.Email,
                 Password = hashPassword,
-                Rol = "User"
+                Rol = "Admin"
             };
 
             _context.Personas.Add(persona);

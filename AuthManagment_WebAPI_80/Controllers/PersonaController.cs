@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using AuthManagment_WebAPI_80.DTOs;
 using AuthManagment_WebAPI_80.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AuthManagment_WebAPI_80.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
     public class PersonaController : ControllerBase
     {
         private readonly PersonaService _personaService;

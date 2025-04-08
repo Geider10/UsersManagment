@@ -31,7 +31,8 @@ namespace AuthManagment_WebAPI_80.Utils
             //body and securityKey of token
             var userClaims = new[]
             {
-                new Claim("id", persona.Id),
+                new Claim(ClaimTypes.NameIdentifier, persona.Id),
+                new Claim(ClaimTypes.Role, persona.Rol)
             };
             var secret_Key = _configuration.GetRequiredSection("SECRET_KEY").Value;
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret_Key));
