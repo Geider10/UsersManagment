@@ -16,10 +16,10 @@ namespace AuthManagment_WebAPI_80.Services
 
         public async Task<List<PersonaDTO>> GetAll()
         {
-            var listaDTO = new List<PersonaDTO>();
             var listaDB = await _context.Personas.ToListAsync();
+            if (listaDB == null) throw new Exception("The are no persons");
 
-            //if (listaDB == null) return NotFound("No personas found");
+            var listaDTO = new List<PersonaDTO>();
             foreach (var item in listaDB)
             {
                 listaDTO.Add(new PersonaDTO
@@ -35,12 +35,13 @@ namespace AuthManagment_WebAPI_80.Services
         public async Task<PersonaDTO> GetById(string id)
         {
             var personaDB = await _context.Personas.FindAsync(id);
+            if (personaDB == null) throw new Exception("Person no found");
+
             var personaDTO = new PersonaDTO()
             {
                 Name = personaDB.Name,
                 Email = personaDB.Email,
             };
-            //if (personaDB == null) return NotFound("Persona no found");
 
             return personaDTO;
         }
@@ -48,7 +49,7 @@ namespace AuthManagment_WebAPI_80.Services
         public async Task<String> Update(string id, PersonaDTO personaDTO)
         {
             var personaDB = await _context.Personas.FindAsync(id);
-            //if (personaDB == null && personaDTO == null) return NotFound("Persona not found");
+            if (personaDB == null) throw new Exception("Person no found");
 
             personaDB.Name = personaDTO.Name;
             personaDB.Email = personaDTO.Email;
@@ -62,7 +63,7 @@ namespace AuthManagment_WebAPI_80.Services
         public async Task<String> Delete(string id)
         {
             var personaDB = await _context.Personas.FindAsync(id);
-            //if (persona == null) return NotFound("Persona not found");
+            if (personaDB == null) throw new Exception("Person no found");
 
             _context.Personas.Remove(personaDB);
             await _context.SaveChangesAsync();

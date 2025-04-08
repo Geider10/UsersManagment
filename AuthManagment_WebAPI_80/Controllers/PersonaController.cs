@@ -20,32 +20,64 @@ namespace AuthManagment_WebAPI_80.Controllers
         [Route("get")]
         public async Task<ActionResult> GetAll()
         {
-            var getAllPersons = await _personaService.GetAll();
+            try
+            {
+                var getAllPersons = await _personaService.GetAll();
+                return Ok(getAllPersons);
+            }
+            catch (Exception ex)
+            {
 
-            return Ok(getAllPersons);
+                return BadRequest(ex.Message);
+            }
+            
         }
         [HttpGet]
         [Route("get/{id}")]
         public async Task<ActionResult> GetById([FromRoute] string id)
         {
-            var getByIdPerson = await _personaService.GetById(id);
-
-            return Ok(getByIdPerson);
+            try
+            {
+                var getByIdPerson = await _personaService.GetById(id);
+                return Ok(getByIdPerson);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
         }
-        [HttpPut][Route("update/{idPersona}")]
+        [HttpPut]
+        [Route("update/{idPersona}")]
         public async Task<ActionResult> Update([FromRoute] string idPersona, [FromBody] PersonaDTO personaDTO)
         {
-            var updatePerson = await _personaService.Update(idPersona, personaDTO);
+            try
+            {
+                var updatePerson = await _personaService.Update(idPersona, personaDTO);
+                return Ok(updatePerson);
+            }
+            catch (Exception ex)
+            {
 
-            return Ok(updatePerson);
+                return BadRequest(ex.Message);
+            }
+           
         }
         [HttpDelete]
         [Route("delete/{id}")]
         public async Task<ActionResult> Delete([FromRoute] string id)
         {
-            var deletePerson = await _personaService.Delete(id);
+            try
+            {
+                var deletePerson = await _personaService.Delete(id);
+                return Ok(deletePerson);
+            }
+            catch (Exception ex)
+            {
 
-            return Ok(deletePerson);
+                return BadRequest(ex.Message);
+            }
+            
         }
     }
 }
