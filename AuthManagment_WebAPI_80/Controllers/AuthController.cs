@@ -15,7 +15,7 @@ namespace AuthManagment_WebAPI_80.Controllers
         }
 
         [HttpPost]
-        [Route("/singup")]
+        [Route("singup")]
         public async Task<ActionResult> SignUp([FromBody] AuthDTO authDTO)
         {
             try
@@ -25,6 +25,21 @@ namespace AuthManagment_WebAPI_80.Controllers
             }
             catch (Exception ex)
             {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult> LogIn([FromBody] AuthDTO authDTO)
+        {
+            try
+            {
+                var logIn = await _authService.LogIn(authDTO);
+                return Ok(logIn);
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(ex.Message);
             }
         }
