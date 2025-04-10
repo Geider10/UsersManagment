@@ -7,10 +7,8 @@
 4. [Herramientas](#herramientas)  
 5. [Despliegue](#despliegue)  
 
----
 
 ## Presentación
-
 Es una API REST que permite gestionar usuarios mediante autenticación y authorizacion. El proyecto tiene una arquitectura en capas, es escalable y mantenible.
 
 ### Características
@@ -22,13 +20,12 @@ Es una API REST que permite gestionar usuarios mediante autenticación y authori
 
 
 ##  Instalación
-
-###Instrucciones de instalación
+### Instrucciones de instalación
 
 1. Cloná el repositorio:
-   ```bash
+```bash
    git clone https://github.com/Geider10/UsersManagment.git
-   cd UsersManagment
+   cd AuthManagment_WebAPI_80
    ```
 2. Restaurá los paquetes NuGet:
 ```bash
@@ -41,8 +38,8 @@ Es una API REST que permite gestionar usuarios mediante autenticación y authori
 ### Archivo de configuración
 Editá el archivo appsettings.json con tu propia conexión a base de datos y clave secreta:
 ```bash
-  "ConnectionStrings": {
-  "Connection": ""
+"ConnectionStrings": {
+"Connection": ""
 },
 "SECRET_KEY": ""
 ```
@@ -54,10 +51,10 @@ Backend: ASP.NET 8.0, C#, Entity Framework Core
 Base de datos: SQL Server
 
 ### Mejoras Futuras
-- Validacion de los datos.
-- Crear una imagen Docker del backend.
-- Desplegar la aplicación en Azure App Service.
-- Usar Azure SQL como base de datos remota.
+1. Validacion de los datos. 
+2. Crear una imagen Docker del backend.
+3. Desplegar la aplicación en Azure App Service.
+4. Usar Azure SQL como base de datos remota.
 
 ## Herramientas
 ### Librerías del backend
@@ -68,4 +65,5 @@ Base de datos: SQL Server
 
 ## Despliegue
 Azure App Service
-Link: 
+
+Backend_url: 
